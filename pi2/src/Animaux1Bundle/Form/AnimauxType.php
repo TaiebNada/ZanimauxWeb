@@ -74,7 +74,7 @@ class AnimauxType extends AbstractType
                 'label'=>'Sexe',
                 'expanded'=>true))
             ->add('description')
-            ->add('image', FileType::class)
+            ->add('image', FileType::class,array('data_class' => null))
             ->add('vet', EntityType::class,array(
                 'class'=>'Animaux1Bundle:Vet',
                 'multiple'=>false ,    // choix multiple

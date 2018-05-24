@@ -138,23 +138,41 @@ class MailVetController extends Controller
 //repondre demande
     public function repondreDemandeAction(Request $request,$mailR)
     {
-        //$demande=new Demande();
-        $vet=new Vet();
         $mail = new MailVet();
-        $form= $this->createForm(MailVetType::class, $mail);
-
         $em=$this->getDoctrine()->getManager();
+
         $modele=$em->getRepository('Animaux1Bundle:Demande')->findOneBy(array('mail'=>$mailR));
+        //$modele=$em->getRepository('Animaux1Bundle:Demande')->find($mailR);
+        //$demande=$em->getRepository('Animaux1Bundle:Demande')->find($id);
+        $vet=new Vet();
+
+
+        $form= $this->createForm(MailVetType::class, $mail);
 
         $form->handleRequest($request) ;
         if ($form->isValid()) {
 
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
             $mail->setEmail($mailR);
-
             $modele->setType('Traité');
+
+            $vet->setNom($modele->getNom());
+            $vet->setPrenom($modele->getPrenom());
+            $vet->setCin($modele->getCin());
+            $vet->setDateNaissance($modele->getDateNaissance());
+            $vet->setNumTel($modele->getNumTel());
+            $vet->setMail($modele->getMail());
+            $vet->setImage($modele->getImage());
+            $vet->setAdresse($modele->getAdresse());
+            $vet->setDelegation($modele->getDelegation());
+            $vet->setDateD(new \DateTime('now'));
+            //$vet->setNbr('0');
+
+            $em->persist($vet);
             $em->persist($modele);
             $em->flush();
+
+
             /**
              * @var $user User
              */
@@ -170,14 +188,62 @@ class MailVetController extends Controller
                 );
             $this->get('mailer')->send($message);
             return $this->redirect($this->generateUrl('my_app_mail_accuse2'));
+
+
         }
         return $this->render('@Animaux1/BackOffice/mail/index.html.twig',
             array('form'=>$form->createView()));
     }
     public function successDemandeAction()
     {
-        //return new Response("email envoyé avec succès, Merci de vérifier votre boite mail.");
+
         return $this->render('@Animaux1/BackOffice/mail/DemandeMailRecu.html.twig');
+        //return new Response("email envoyé avec succès, Merci de vérifier votre boite mail.");
+
+    }
+
+    public function contactVetAction(Request $request,$mailR)
+    {
+        /* $message = \Swift_Message::newInstance()
+             ->setSubject($request->get('titre'))
+             ->setFrom('riia.vision@gmail.com')
+             ->setTo($request->get('sendTo'))
+             ->setBody(
+                 $request->get('sujet'));
+         $this->get('mailer')->send($message);
+
+         return $this->render('@Animaux1/FrontOffice/mail/premail.html.twig',
+             array('titre'=>$request->get('titre'),'sendTo'=>$request->get('sendTo')));*/
+        $mail = new MailVet();
+        $form= $this->createForm(MailVetType::class, $mail);
+        $form->handleRequest($request) ;
+        if ($form->isValid()) {
+
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $mail->setEmail($mailR);
+            /**
+             * @var $user User
+             */
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Accusé de réception')
+                ->setFrom($user->getEmail())
+                ->setTo($mailR)
+                ->setBody($this->renderView(
+                    '@Animaux1/BackOffice/mail/email.html.twig',
+                    array('nom' => $mail->getNom(), 'prenom'=>$mail->getPrenom(),'text'=>$request->get('text'))
+                ),
+                    'text/html'
+                );
+            $this->get('mailer')->send($message);
+            return $this->redirect($this->generateUrl('my_app_mail_accuse3'));
+        }
+        return $this->render('@Animaux1/FrontOffice/mail/index.html.twig',
+            array('form'=>$form->createView()));
+    }
+    public function successContactAction()
+    {
+        //return new Response("email envoyé avec succès, Merci de vérifier votre boite mail.");
+        return $this->render('@Animaux1/FrontOffice/mail/MailRecu.html.twig');
     }
 }
 

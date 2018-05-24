@@ -206,6 +206,16 @@ class AnimauxController extends Controller
         $Form=$this->createForm(AnimauxType::class,$modele);
         $Form->handleRequest($request);
         if($Form->isValid()){
+            $file = $modele->getImage();
+
+            $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
+
+
+            $file->move($this->getParameter('brochures_directory'), $fileName);
+
+            $modele->setImage($fileName);
+
+
             $em->persist($modele);
             $em->flush();
             return $this->redirectToRoute('maListe');

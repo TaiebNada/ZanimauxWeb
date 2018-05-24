@@ -108,6 +108,13 @@ my_app_mail_accuse:
 my_app_mail_accuse1:
     path: /successBack
     defaults: { _controller: Animaux1Bundle:MailVet:successBack}
+contactVet:
+      path:     /contactVet/{mailR}
+      defaults: { _controller: Animaux1Bundle:MailVet:contactVet}
+my_app_mail_accuse3:
+    path: /successContact
+    defaults: { _controller: Animaux1Bundle:MailVet:successContact}
+
 
 ajoutDemande:
      path:     /ajoutDemande
