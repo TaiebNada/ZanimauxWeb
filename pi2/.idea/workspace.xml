@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e02acba2-db79-4948-8f8f-e3f7076a4e42" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/commandlinetools/Composer_28_02_18_06_05_c.xml" afterPath="$PROJECT_DIR$/.idea/commandlinetools/Composer_5_24_18_2_30_AM_c.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_28_02_18_06_05_s.xml" afterPath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_5_24_18_3_34_AM_s.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pi.iml" afterPath="$PROJECT_DIR$/.idea/pi.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/parameters.yml.dist" afterPath="$PROJECT_DIR$/app/config/parameters.yml.dist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/symfony_requirements" afterPath="$PROJECT_DIR$/bin/symfony_requirements" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Controller/AnimauxController.php" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Controller/AnimauxController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Controller/MailVetController.php" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Controller/MailVetController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Form/AnimauxType.php" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Form/AnimauxType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/Animaux/ModifierProfil.html.twig" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/Animaux/ModifierProfil.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/Animaux/carteSuiviClient.html.twig" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/Animaux/carteSuiviClient.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/ListeAnimaux.html.twig" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/ListeAnimaux.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/ReclamationVet/AjoutReclamation.html.twig" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/ReclamationVet/AjoutReclamation.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/Vet/AfficherDetail.html.twig" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/Vet/AfficherDetail.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/Vet/ListeVet.html.twig" afterPath="$PROJECT_DIR$/src/Animaux1Bundle/Resources/views/FrontOffice/Vet/ListeVet.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BoutiqueBundle/Resources/views/layout.html.twig" afterPath="$PROJECT_DIR$/src/BoutiqueBundle/Resources/views/layout.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/var/SymfonyRequirements.php" afterPath="$PROJECT_DIR$/var/SymfonyRequirements.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/config.php" afterPath="$PROJECT_DIR$/web/config.php" />
-    </list>
+    <list default="true" id="e02acba2-db79-4948-8f8f-e3f7076a4e42" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -519,12 +497,12 @@
       <workItem from="1525230362530" duration="25000" />
       <workItem from="1526999035215" duration="211000" />
       <workItem from="1527097709776" duration="5270000" />
-      <workItem from="1527121576934" duration="10272000" />
+      <workItem from="1527121576934" duration="11468000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="307567000" />
+    <option name="totallyTimeSpent" value="308763000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
