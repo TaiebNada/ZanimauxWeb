@@ -141,3 +141,16 @@ my_app_mail_accuse2:
     path: /successDemande
     defaults: { _controller: Animaux1Bundle:MailVet:successDemande}
 
+
+maListeJson2:
+    path:     /maListeJson2/{id}
+    defaults: { _controller: Animaux1Bundle:Animaux:afficheMaListeJson   }
+listeVetJson:
+    path:     /listeVetJson
+    defaults: { _controller: Animaux1Bundle:Vet:afficheListeVetJson }
+ajoutAnimalJson:
+    path:     /ajoutAnimalJson/{id}
+    defaults: { _controller: Animaux1Bundle:Animaux:ajoutAnimalJson   }
+updateAnimalJson:
+    path:     /updateAnimalJson/{id2}
+    defaults: { _controller: Animaux1Bundle:Animaux:modifierProfilJson   }

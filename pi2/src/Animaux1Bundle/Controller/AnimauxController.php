@@ -9,7 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Zend\Json\Expr;
 
 class AnimauxController extends Controller
@@ -236,6 +239,116 @@ class AnimauxController extends Controller
         return $this->render("@Animaux1/Animaux/recherche.html.twig",
             array('v' => $voitures));
     }
+
+
+
+    //PARTIE MOBIILE :
+    public function afficheMaListeJsonAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        // $id= $this->getUser()->getId();
+        // $id=1;
+        $modele=$em->getRepository('Animaux1Bundle:Animaux')->findBy(array("User_id" => $id));
+        foreach ($modele as $m) {
+            $vet=$em->getRepository('Animaux1Bundle:Vet')->findBy(array("id"=>$m->getVet()));
+            foreach ($vet as $v) {
+
+                $animal[]=array(
+                    'idAnimal'=>$m->getId(),
+                    'id'=>$v->getId(),
+                    'nom'=>$m->getNom(),
+                    'nomVet'=>$v->getNom(),
+                    'espece'=>$m->getEspece(),
+                    'sexe'=>$m->getSexe(),
+                    'dateNaissance'=>date_format($m->getDateNaissance(),'Y-m-d'),
+                    'image'=>$m->getImage(),
+                    'description'=>$m->getdescription(),
+                    'taille'=>$m->getTaille(),
+                    'poids'=>$m->getPoids(),
+                    'dateVisiteD'=>date_format($m->getDateVisiteD(),'Y-m-d'),
+                    'dateVaccin'=>date_format($m->getDateVaccin(),'Y-m-d'));
+
+            }
+
+        }
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($animal);
+      //  $formatted=$serializer->normalize($animal);
+        return new JsonResponse($formatted);
+    }
+
+    public function ajoutAnimalJsonAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $voiture = new Animaux();
+        $nomVet=$request->get('nomVet');
+        //$user= $em->getRepository('Animaux1Bundle:User')->find($id);
+        //$Vet= $em->getRepository('Animaux1Bundle:Vet')->find($nomVet);
+        $v=$em->getRepository('Animaux1Bundle:Vet')->findOneBy(array('nom' => $nomVet));
+
+        $voiture->setNom($request->get('nom'));
+        $voiture->setEspece($request->get('espece'));
+        $voiture->setSexe($request->get('sexe'));
+        $voiture->setDescription($request->get('description'));
+        $voiture->setDateNaissance(new \DateTime ($request->get('dateNaissance')));
+        $voiture->setDateVisiteD(new\DateTime(('now')));
+        $voiture->setDateVaccin(new\DateTime(('now')));
+
+        //$voiture->setVet($request->get('idVet'));
+        $voiture->setVet($v);
+        $voiture->setTaille('100');
+        $voiture->setPoids('0');
+        /*$voiture->setDateVaccin();
+        $voiture->setDateVisiteD('0');*/
+        $voiture->setUserId($id);
+        $voiture->setImage($request->get('image'));
+        $em->persist($voiture);
+        $em->flush();
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($voiture);
+        return new JsonResponse($formatted);
+
+
+    }
+
+    public function modifierProfilJsonAction(Request $request,$id2){
+
+        $em=$this->getDoctrine()->getManager();
+        $id=$request->get('id');
+        $voiture=$em->getRepository("Animaux1Bundle\Entity\Animaux")->find($id);
+
+        $nomVet=$request->get('nomVet');
+        //$user= $em->getRepository('Animaux1Bundle:User')->find($id);
+        //$Vet= $em->getRepository('Animaux1Bundle:Vet')->find($nomVet);
+        $v=$em->getRepository('Animaux1Bundle:Vet')->findOneBy(array('nom' => $nomVet));
+
+        $voiture->setNom($request->get('nom'));
+        $voiture->setEspece($request->get('espece'));
+        $voiture->setSexe($request->get('sexe'));
+        $voiture->setDescription($request->get('description'));
+        $voiture->setDateNaissance(new \DateTime ($request->get('dateNaissance')));
+        $voiture->setDateVisiteD(new\DateTime(('now')));
+        $voiture->setDateVaccin(new\DateTime(('now')));
+
+        //$voiture->setVet($request->get('idVet'));
+        $voiture->setVet($v);
+        $voiture->setTaille('100');
+        $voiture->setPoids('100');
+        /*$voiture->setDateVaccin();
+        $voiture->setDateVisiteD('0');*/
+        $voiture->setUserId($id2);
+        $voiture->setImage($request->get('image'));
+        $em->persist($voiture);
+        $em->flush();
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($voiture);
+        return new JsonResponse($formatted);
+
+
+
+    }
+
+
 
     //stat
    /* public function chartHistogrammeAction()
